@@ -34,8 +34,6 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Prompt.KillProcesses
 
 
--- Workspace handling idea from here http://www.reddit.com/r/xmonad/comments/fgyzc/xmonadactionsdynamicworkspaces_where_have_you/c1g0re2 
--- and http://www.reddit.com/r/xmonad/comments/fgyzc/xmonadactionsdynamicworkspaces_where_have_you/c1qprcu
 workspaceNames = map return ['a'..'z']
 
 specialWorkspaces = ["NSP"]
@@ -151,6 +149,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask, xK_a), SM.submap . M.fromList $
             [ ((modMask, xK_n), appendFilePrompt bigXPConfig "~/Dropbox/notes/Everything")
             ])
+-- Workspace handling idea from here http://www.reddit.com/r/xmonad/comments/fgyzc/xmonadactionsdynamicworkspaces_where_have_you/c1g0re2 
+-- and http://www.reddit.com/r/xmonad/comments/fgyzc/xmonadactionsdynamicworkspaces_where_have_you/c1qprcu
     , ((modMask, xK_d), SM.submap . M.fromList $
             zip (zip (repeat (modMask)) [xK_a..xK_z]) (map (windows . W.greedyView) workspaceNames)
             ++
