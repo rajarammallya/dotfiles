@@ -1,0 +1,113 @@
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+(package-initialize)
+(tool-bar-mode 0)
+(require 'auto-complete)
+(global-auto-complete-mode t)
+
+; From http://emacsredux.com/blog/2013/04/28/switch-to-previous-buffer/
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun switch-to-previous-buffer ()
+  "Switch to previously open buffer.
+Repeated invocations toggle between the two most recently open buffers."
+  (interactive)
+  (switch-to-buffer (other-buffer (current-buffer) 1)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(global-evil-leader-mode)
+(evil-leader/set-leader ",")
+(global-set-key (kbd "C-6") 'switch-to-previous-buffer)
+(evil-leader/set-key-for-mode 'clojure-mode
+    "ct" 'clojure-jump-between-tests-and-code
+    "cx" 'lisp-eval-defun
+    "cl" 'clojure-load-file
+    "cj" 'nrepl-jack-in
+)
+(evil-leader/set-key-for-mode 'emacs-lisp-mode
+  "xe" 'eval-last-sexp
+)
+(evil-leader/set-key
+  "cc" 'nrepl-eval-expression-at-point
+  "ce" 'nrepl-eval-last-expression
+  "cr" 'nrepl-eval-region
+  "cp" 'nrepl-pprint-eval-last-expression
+  "cz" 'nrepl-switch-to-repl-buffer
+  "ck" 'nrepl-load-current-buffer
+  "ck" 'nrepl-load-current-buffer
+  "cl" 'nrepl-load-file
+  "cd" 'nrepl-doc
+  "cn" 'nrepl-set-ns
+  "fb" 'helm-buffers-list
+  "ff" 'helm-projectile
+  "ft" 'helm-etags-select
+  "xk" 'kill-buffer
+  "p" 'previous-error
+  "n" 'next-error
+  "se" 'ack
+  "ss" 'ack-same
+  )
+(evil-mode 1)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ack-use-environment nil)
+ '(helm-split-window-default-side (quote right)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+(add-hook 'find-file-hook
+          (lambda ()
+            (setq default-directory command-line-default-directory)))
+; From https://github.com/clojure-emacs/ac-nrepl
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'ac-nrepl)
+(add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
+(add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes 'nrepl-mode))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+; From http://ianeslick.com/2013/05/17/clojure-debugging-13-emacs-nrepl-and-ritz/
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'nrepl)
+ 
+;; Configure nrepl.el
+(setq nrepl-hide-special-buffers t)
+(setq nrepl-popup-stacktraces-in-repl t)
+(setq nrepl-history-file "~/.emacs.d/nrepl-history")
+ 
+;; Some default eldoc facilities
+(add-hook 'nrepl-connected-hook
+(defun pnh-clojure-mode-eldoc-hook ()
+(add-hook 'clojure-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
+(nrepl-enable-on-existing-clojure-buffers)))
+ 
+;; Repl mode hook
+(add-hook 'nrepl-mode-hook 'subword-mode)
+ 
+;; Auto completion for NREPL
+(require 'ac-nrepl)
+(eval-after-load "auto-complete"
+'(add-to-list 'ac-modes 'nrepl-mode))
+(add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
+
+
+
+(require 'nrepl-ritz) ;; after (require 'nrepl)
+ 
+;; Ritz middleware
+(define-key nrepl-interaction-mode-map (kbd "C-c C-j") 'nrepl-javadoc)
+(define-key nrepl-mode-map (kbd "C-c C-j") 'nrepl-javadoc)
+(define-key nrepl-interaction-mode-map (kbd "C-c C-a") 'nrepl-apropos)
+(define-key nrepl-mode-map (kbd "C-c C-a") 'nrepl-apropos)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

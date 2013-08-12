@@ -1,0 +1,6 @@
+--pager=less -R
+--type-set=groovy=.groovy
+--type-set=gsp=.gsp
+--ignore-dir=node_modules
+--ignore-dir=public/js/jquery
+--ignore-dir=.idea

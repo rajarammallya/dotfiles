@@ -1,0 +1,16 @@
+[user]
+	email = gavri.fernandez@gmail.com
+	name = Gavri Fernandez
+[alias]
+	co = checkout
+	st = status
+        cm = commit
+        a = add
+        pr = pull --rebase
+        l = log --graph --oneline --decorate
+[color]
+        ui = true
+[push]
+	default = current
+[core]
+	excludesfile = /home/gavri/.gitignore
