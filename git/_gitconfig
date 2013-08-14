@@ -13,4 +13,4 @@
 [push]
 	default = current
 [core]
-	excludesfile = /home/gavri/.gitignore
+	excludesfile = /home/g/.gitignore
