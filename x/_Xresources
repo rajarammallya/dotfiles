@@ -1,5 +1,4 @@
 ! terminal colors ------------------------------------------------------------
-
 ! tangoesque scheme
 *background: #111111
 *foreground: #babdb6
@@ -27,3 +26,7 @@
 ! LightGrey + White
 *color7:  #cccccc
 *color15: #ffffff
+
+dzen2.font:       -*-fixed-*-*-*-*-*-*-*-*-*-*-*-*
+dzen2.foreground: #22EE11
+dzen2.background: white
