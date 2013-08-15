@@ -14,3 +14,4 @@
 	default = current
 [core]
 	excludesfile = /home/g/.gitignore
+	editor = emacs
