@@ -124,6 +124,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask, xK_m), SM.submap . M.fromList $
             [ ((modMask, xK_p), spawn "mpc toggle")
             , ((modMask, xK_comma), spawn "mpc prev")
+            , ((modMask, xK_i), spawn "notify-send \"`mpc current`\"")
             , ((modMask, xK_period), spawn "mpc next")
             ])
     , ((modMask, xK_o), SM.submap . M.fromList $
