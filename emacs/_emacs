@@ -81,3 +81,21 @@ Repeated invocations toggle between the two most recently open buffers."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (load-theme 'zenburn)
+
+(require 'helm)
+(require 'helm-files)
+(require 'projectile)
+(require 'helm-locate)
+(require 'helm-projectile)
+
+(defun helm-what-i-want ()
+  "helm what i want"
+  (interactive)
+  (helm :sources '(helm-c-source-projectile-files-list
+                   helm-c-source-projectile-buffers-list
+                   helm-c-source-projectile-recentf-list
+		   helm-source-locate)
+        :buffer "*helm what i want*"
+        :prompt ": "))
+
+(global-set-key "\C-x\C-m" 'helm-what-i-want)
