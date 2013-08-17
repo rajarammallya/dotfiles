@@ -15,41 +15,6 @@ Repeated invocations toggle between the two most recently open buffers."
   (switch-to-buffer (other-buffer (current-buffer) 1)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(global-evil-leader-mode)
-(evil-leader/set-leader ",")
-(global-set-key (kbd "C-6") 'switch-to-previous-buffer)
-(evil-leader/set-key-for-mode 'clojure-mode
-    "ct" 'clojure-jump-between-tests-and-code
-    "cx" 'lisp-eval-defun
-    "cl" 'clojure-load-file
-    "cj" 'nrepl-jack-in
-)
-(evil-leader/set-key-for-mode 'emacs-lisp-mode
-  "xe" 'eval-last-sexp
-)
-(evil-leader/set-key
-  "cc" 'nrepl-eval-expression-at-point
-  "ce" 'nrepl-eval-last-expression
-  "cr" 'nrepl-eval-region
-  "cp" 'nrepl-pprint-eval-last-expression
-  "cz" 'nrepl-switch-to-repl-buffer
-  "ck" 'nrepl-load-current-buffer
-  "ck" 'nrepl-load-current-buffer
-  "cl" 'nrepl-load-file
-  "cd" 'nrepl-doc
-  "cn" 'nrepl-set-ns
-  "fb" 'helm-buffers-list
-  "fg" 'helm-find-files
-  "ff" 'helm-projectile
-  "ft" 'helm-etags-select
-  "xk" 'kill-buffer
-  "p" 'previous-error
-  "n" 'next-error
-  "se" 'ack
-  "ss" 'ack-same
-  )
-(evil-mode 1)
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
