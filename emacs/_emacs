@@ -82,6 +82,8 @@ Repeated invocations toggle between the two most recently open buffers."
 
 (load-theme 'zenburn)
 
+(setq twittering-use-master-password t)
+
 (require 'helm)
 (require 'helm-files)
 (require 'projectile)
