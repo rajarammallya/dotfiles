@@ -128,9 +128,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
             , ((modMask, xK_period), spawn "mpc next")
             ])
     , ((modMask, xK_o), SM.submap . M.fromList $
-            [ ((modMask, xK_e), spawn "emacs")
+            [((modMask, xK_e), spawn "emacs")
             , ((modMask, xK_v), spawn "vlc")
             , ((modMask, xK_t), spawn $ XMonad.terminal conf)
+            , ((modMask, xK_o), spawn "synapse")
             , ((modMask, xK_f), spawn "urxvt -e ranger")
             ])
     , ((modMask, xK_b), SM.submap . M.fromList $
