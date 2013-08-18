@@ -255,6 +255,7 @@ main = xmonad $ ewmh defaultConfig {
                   spawn "synclient TapButton3=2"
                   spawn "pidgin"
                   spawn "killall parcellite; parcellite"
+                  spawn "xsetroot -solid darkred"
                   spawn "xmodmap ~/.xmodmaprc"
                   spawn "dropbox start"
         , layoutHook         = windowArrange $ smartBorders $ myLayout
