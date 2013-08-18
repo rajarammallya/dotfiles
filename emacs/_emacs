@@ -101,3 +101,5 @@ Repeated invocations toggle between the two most recently open buffers."
         :prompt ": "))
 
 (global-set-key "\C-x\C-m" 'helm-what-i-want)
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
