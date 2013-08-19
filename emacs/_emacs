@@ -100,6 +100,9 @@ Repeated invocations toggle between the two most recently open buffers."
         :buffer "*helm what i want*"
         :prompt ": "))
 
-(global-set-key "\C-x\C-m" 'helm-what-i-want)
+(global-set-key (kbd "C-c C-,") 'helm-what-i-want)
+(global-set-key (kbd "C-c C-/") 'helm-ack)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+
+(setq projectile-require-project-root nil)
