@@ -39,15 +39,15 @@ workspaceNames = map return ['a'..'z']
 specialWorkspaces = ["NSP"]
 
 bigXPConfig = defaultXPConfig
-	{ font = "xft:terminal-20"
-	, fgColor = "#DDDDDD"
-	, bgColor = "#333333"
-	, fgHLight = "#000000"
-	, bgHLight = "#FFFFFF"
+        { font = "xft:terminal-20"
+        , fgColor = "#DDDDDD"
+        , bgColor = "#333333"
+        , fgHLight = "#000000"
+        , bgHLight = "#FFFFFF"
         , promptBorderWidth = 0
-	, borderColor =  "#3f3c6d"
-	, height = 40
-	}
+        , borderColor =  "#3f3c6d"
+        , height = 40
+        }
 
 smallXPConfig = bigXPConfig
  {
@@ -56,17 +56,17 @@ smallXPConfig = bigXPConfig
   }
 
 scratchpads = [
-     NS "htop" "urxvt -e htop" (title =? "htop")
+     NS "htop" "urxvtc -e htop" (title =? "htop")
          (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)),
      NS "social" "gwibber" (className =? "gwibber")
          (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)),
-     NS "music" "urxvt -title music -e ncmpc" (title =? "music")
+     NS "music" "urxvtc -title music -e ncmpc" (title =? "music")
          (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)),
      NS "notes" "gvim --role notes -c 'set autoread' -c'set wrap' -c 'au FocusLost * :wa' -c 'colorscheme slate' -c 'Note'" (role =? "notes")
          (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)),
      NS "information" "conky" (className =? "Conky")
          (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)),
-     NS "volume" "urxvt -e alsamixer" (title =? "alsamixer")
+     NS "volume" "urxvtc -e alsamixer" (title =? "alsamixer")
          (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
  ] where role = stringProperty "WM_WINDOW_ROLE"
 
@@ -132,7 +132,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
             , ((modMask, xK_v), spawn "vlc")
             , ((modMask, xK_t), spawn $ XMonad.terminal conf)
             , ((modMask, xK_o), spawn "synapse")
-            , ((modMask, xK_f), spawn "urxvt -e ranger")
+            , ((modMask, xK_f), spawn "urxvtc -e ranger")
             ])
     , ((modMask, xK_b), SM.submap . M.fromList $
             [ ((modMask, xK_f), spawn "google-chrome --new-window facebook.com")
@@ -233,7 +233,7 @@ myLayout = showWName' (defaultSWNConfig {swn_fade = 0.1, swn_font = "xft: Ubuntu
 myManageHook = composeAll .concat $ [[namedScratchpadManageHook scratchpads, manageDocks], [className =? "Do" --> doIgnore ]]
 main = xmonad $ ewmh defaultConfig {
         focusFollowsMouse  = True,
-        terminal  = "urxvt",
+        terminal  = "urxvtc",
         modMask            = mod4Mask,
         workspaces         = workspaceNames,
         keys               = myKeys,
@@ -257,6 +257,7 @@ main = xmonad $ ewmh defaultConfig {
                   spawn "killall parcellite; parcellite"
                   spawn "xsetroot -solid darkred"
                   spawn "xmodmap ~/.xmodmaprc"
+                  spawn "urxvtd"
                   spawn "dropbox start"
         , layoutHook         = windowArrange $ smartBorders $ myLayout
   }
