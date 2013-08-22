@@ -106,3 +106,5 @@ Repeated invocations toggle between the two most recently open buffers."
 (put 'downcase-region 'disabled nil)
 
 (setq projectile-require-project-root nil)
+
+(evil-mode)
