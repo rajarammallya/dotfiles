@@ -26,5 +26,6 @@ URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.keysym.C-S-C: perl:clipboard:copy
 URxvt.keysym.C-v: perl:clipboard:paste
 URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+URxvt.clipboard.autocopy: true
 URxvt.iso14755: false
 URxvt.iso14755_52: false
